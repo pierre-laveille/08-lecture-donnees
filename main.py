@@ -1,4 +1,10 @@
+"""
+Module de gestion et d'analyse de listes numériques extraites d'un fichier CSV.
+Ce programme permet de lire un fichier et d'effectuer des calculs statistiques.
+"""
+
 #### Imports et définition des variables globales
+import csv
 
 FILENAME = "listes.csv"
 
@@ -13,34 +19,46 @@ def read_data(filename):
     Returns:
         list: le contenu du fichier (1 list par ligne)
     """
-    l = []
+    with open(filename, mode='r', encoding='utf8') as f:
+        lecteur = csv.reader(f, delimiter=';')
+        l = []
+        for ligne in lecteur:
+            liste_entiers = [int(x) for x in ligne]
+            l.append(liste_entiers)
     return l
 
 def get_list_k(data, k):
-    l = []
-    return l
+    """Retourne la k-ième liste de la structure de données <data>."""
+    return data[k]
 
 def get_first(l):
-    return None
+    """Retourne le premier élément de la liste <l>."""
+    return l[0]
 
 def get_last(l):
-    return None
+    """Retourne le dernier élément de la liste <l>."""
+    return l[-1]
 
 def get_max(l):
-    return None
+    """Retourne la valeur maximale présente dans la liste <l>."""
+    return max(l)
 
 def get_min(l):
-    return None
+    """Retourne la valeur minimale présente dans la liste <l>."""
+    return min(l)
 
 def get_sum(l):
-    return None
+    """Retourne la somme de tous les éléments de la liste <l>."""
+    return sum(l)
 
 
 #### Fonction principale
 
 
 def main():
-    pass
+    """
+    Fonction principale : charge les données et affiche les résultats des tests.
+    """
     # data = read_data(FILENAME)
     # for i, l in enumerate(data):
     #     print(i, l)
